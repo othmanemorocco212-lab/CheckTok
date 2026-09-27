@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckTok - شراء متابعين وإعجابات TikTok</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        check: {
+                            50: '#1a1a1a',
+                            100: '#2a2a2a',
+                            200: '#3a3a3a',
+                            600: '#ef4444',
+                            700: '#dc2626',
+                            800: '#991b1b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            scrollbar-color: #ef4444 #1a1a1a;
+            scrollbar-width: thin;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ef4444;
+            border-radius: 4px;
+        }
+        .glow-red {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.2);
+        }
+        .deep-web-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1515 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .deep-web-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.05) 0%, transparent 50%), 
+                              radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.5) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+            }
+        }
+        .glitch {
+            position: relative;
+            animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        }
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-950 font-sans text-gray-100 antialiased" dir="rtl">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur-md shadow-2xl border-b-2 border-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg flex items-center justify-center font-black text-2xl shadow-lg glow-red group-hover:scale-110 transition-transform duration-300">
+                    ✓
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tighter text-white">
+                        Check<span class="text-red-500">Tok</span>
+                    </span>
+                    <span class="text-xs text-red-400 font-bold">منصة موثوقة</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-300">
+                <a href="#followers" class="hover:text-red-500 transition-colors">المتابعين</a>
+                <a href="#likes" class="hover:text-red-500 transition-colors">الإعجابات</a>
+                <a href="#about" class="hover:text-red-500 transition-colors">حول</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="#followers" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2.5 rounded-lg font-bold shadow-lg glow-red hover:shadow-2xl transition-all flex items-center gap-2 text-sm">
+                <i class="fab fa-tiktok"></i>
+                <span>ابدأ الآن</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative deep-web-bg text-white py-20 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-10"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-red-900 rounded-full blur-3xl opacity-10"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <span class="inline-block px-4 py-2 bg-red-900/30 text-red-400 border-2 border-red-600 rounded-full text-xs font-black uppercase tracking-widest mb-6 glitch">
+                    🔥 عرض حصري محدود الوقت
+                </span>
+                <h1 class="text-5xl sm:text-7xl font-black tracking-tighter mb-6 leading-tight text-white drop-shadow-lg">
+                    ابني حضورك على <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">TikTok</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                    متابعين وإعجابات حقيقيين من دول عربية. منصة آمنة وموثوقة بنسبة 100%
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#followers" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-black rounded-xl shadow-2xl glow-red hover:shadow-red-600/50 transition-all">
+                        شراء متابعين
+                    </a>
+                    <a href="#likes" class="w-full sm:w-auto px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl border-2 border-red-600/50 hover:border-red-600 transition-all">
+                        شراء إعجابات
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="py-12 bg-gray-900 border-b-2 border-red-600/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl bg-gray-800 border-2 border-red-600/30 text-center hover:border-red-600 transition-all">
+                    <div class="text-4xl font-black text-red-500 mb-2">100%</div>
+                    <h3 class="font-bold text-gray-100 mb-1">آمن وموثوق</h3>
+                    <p class="text-sm text-gray-400">بدون حذف الحساب</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-800 border-2 border-red-600/30 text-center hover:border-red-600 transition-all">
+                    <div class="text-4xl font-black text-red-500 mb-2">ناس حقيقيين</div>
+                    <h3 class="font-bold text-gray-100 mb-1">من دول عربية</h3>
+                    <p class="text-sm text-gray-400">متابعين ومتفاعلين حقيقيين</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-800 border-2 border-red-600/30 text-center hover:border-red-600 transition-all">
+                    <div class="text-4xl font-black text-red-500 mb-2">دعم 24/7</div>
+                    <h3 class="font-bold text-gray-100 mb-1">مساعدة فورية</h3>
+                    <p class="text-sm text-gray-400">نحن هنا لك دائماً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Followers Section -->
+    <section id="followers" class="py-20 bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-4xl sm:text-5xl font-black text-white tracking-tight mb-2">
+                    <i class="fab fa-tiktok text-red-500 mr-3"></i>شراء المتابعين
+                </h2>
+                <p class="text-gray-400 text-lg">متابعين حقيقيين من المغرب وتونس والدول العربية</p>
+                <div class="mt-4 px-4 py-3 bg-red-900/20 border-2 border-red-600 rounded-lg inline-block">
+                    <p class="text-red-400 font-bold flex items-center gap-2">
+                        <i class="fas fa-clock"></i>
+                        <span id="countdown-followers"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Followers Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 10000 Followers -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-600/50 hover:border-red-500 hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 group">
+                    <div class="bg-gradient-to-br from-red-900 to-gray-900 p-6 border-b-2 border-red-600/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">10,000</h3>
+                            <i class="fab fa-tiktok text-red-500 text-3xl opacity-50"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm">متابع حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-400 text-sm mb-3">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> تسليم سريع</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> ضمان استقرار</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-600/30 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-500 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-500">50 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50000 Followers -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-500 hover:shadow-2xl hover:shadow-red-600/40 transition-all duration-300 group relative ring-2 ring-red-600 ring-offset-2 ring-offset-gray-950">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 font-black text-xs rounded-bl-lg">الأفضل</div>
+                    <div class="bg-gradient-to-br from-red-800 to-red-900 p-6 border-b-2 border-red-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">50,000</h3>
+                            <i class="fab fa-tiktok text-red-400 text-3xl opacity-60"></i>
+                        </div>
+                        <p class="text-gray-200 text-sm font-semibold">متابع حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-300 text-sm mb-3 font-semibold">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-200">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> تسليم سريع</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> ضمان استقرار</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-500 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-400 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-400">200 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 100000 Followers -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-600/50 hover:border-red-500 hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 group">
+                    <div class="bg-gradient-to-br from-red-900 to-gray-900 p-6 border-b-2 border-red-600/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">100,000</h3>
+                            <i class="fab fa-tiktok text-red-500 text-3xl opacity-50"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm">متابع حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-400 text-sm mb-3">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> تسليم سريع</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> ضمان استقرار</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-600/30 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-500 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-500">500 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Likes Section -->
+    <section id="likes" class="py-20 bg-gray-900 border-t-2 border-red-600/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-4xl sm:text-5xl font-black text-white tracking-tight mb-2">
+                    <i class="fas fa-heart text-red-500 mr-3"></i>شراء الإعجابات
+                </h2>
+                <p class="text-gray-400 text-lg">إعجابات حقيقية من ناس حقيقيين بالدول العربية</p>
+                <div class="mt-4 px-4 py-3 bg-red-900/20 border-2 border-red-600 rounded-lg inline-block">
+                    <p class="text-red-400 font-bold flex items-center gap-2">
+                        <i class="fas fa-clock"></i>
+                        <span id="countdown-likes"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Likes Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 10000 Likes -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-600/50 hover:border-red-500 hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 group">
+                    <div class="bg-gradient-to-br from-red-900 to-gray-900 p-6 border-b-2 border-red-600/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">10,000</h3>
+                            <i class="fas fa-heart text-red-500 text-3xl opacity-50"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm">إعجاب حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-400 text-sm mb-3">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> ناس حقيقيين</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> تسليم سريع</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-600/30 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-500 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-500">100 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 50000 Likes -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-500 hover:shadow-2xl hover:shadow-red-600/40 transition-all duration-300 group relative ring-2 ring-red-600 ring-offset-2 ring-offset-gray-950">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 font-black text-xs rounded-bl-lg">الأفضل</div>
+                    <div class="bg-gradient-to-br from-red-800 to-red-900 p-6 border-b-2 border-red-500">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">50,000</h3>
+                            <i class="fas fa-heart text-red-400 text-3xl opacity-60"></i>
+                        </div>
+                        <p class="text-gray-200 text-sm font-semibold">إعجاب حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-300 text-sm mb-3 font-semibold">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-200">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> ناس حقيقيين</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-400"></i> تسليم سريع</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-500 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-400 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-400">300 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 100000 Likes -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border-2 border-red-600/50 hover:border-red-500 hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 group">
+                    <div class="bg-gradient-to-br from-red-900 to-gray-900 p-6 border-b-2 border-red-600/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-black text-white">100,000</h3>
+                            <i class="fas fa-heart text-red-500 text-3xl opacity-50"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm">إعجاب حقيقي</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <p class="text-gray-400 text-sm mb-3">المميزات:</p>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> من دول عربية</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> ناس حقيقيين</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> آمن 100%</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-red-500"></i> تسليم سريع</li>
+                            </ul>
+                        </div>
+                        <div class="border-t border-red-600/30 pt-6">
+                            <div class="flex items-end justify-between mb-4">
+                                <div>
+                                    <p class="text-gray-500 text-xs">السعر</p>
+                                    <p class="text-3xl font-black text-red-500">500 د.م</p>
+                                </div>
+                            </div>
+                            <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all glow-red">
+                                <i class="fas fa-shopping-cart mr-2"></i>اشتر الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-950 border-t-2 border-red-600/30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-black text-white mb-12 text-center">لماذا CheckTok؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-red-600/30 hover:border-red-500 transition-all">
+                    <i class="fas fa-users text-3xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-black text-white mb-3">متابعين حقيقيين</h3>
+                    <p class="text-gray-400">جميع المتابعين والإعجابات من أشخاص حقيقيين موجودين في الدول العربية</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-red-600/30 hover:border-red-500 transition-all">
+                    <i class="fas fa-lock text-3xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-black text-white mb-3">آمن 100%</h3>
+                    <p class="text-gray-400">نستخدم أحدث تقنيات الحماية لضمان عدم حذف حسابك أو فقدان المتابعين</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-red-600/30 hover:border-red-500 transition-all">
+                    <i class="fas fa-bolt text-3xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-black text-white mb-3">تسليم سريع</h3>
+                    <p class="text-gray-400">تسليم فوري للمتابعين والإعجابات، لا حاجة للانتظار أيام</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl border-2 border-red-600/30 hover:border-red-500 transition-all">
+                    <i class="fas fa-headset text-3xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-black text-white mb-3">دعم 24/7</h3>
+                    <p class="text-gray-400">فريقنا متوفر طوال الوقت للإجابة على أي استفسارات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-12 border-t-2 border-red-600/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <a href="#" class="text-2xl font-black text-white mb-2 inline-block">
+                        Check<span class="text-red-500">Tok</span>
+                    </a>
+                    <p class="text-xs text-gray-500">منصة موثوقة لشراء متابعين وإعجابات TikTok</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-3">الروابط</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#followers" class="hover:text-red-500 transition-colors">المتابعين</a></li>
+                        <li><a href="#likes" class="hover:text-red-500 transition-colors">الإعجابات</a></li>
+                        <li><a href="#about" class="hover:text-red-500 transition-colors">حول</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-3">التواصل</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:support@checktok.com" class="hover:text-red-500 transition-colors">البريد الإلكتروني</a></li>
+                        <li><a href="https://wa.me/" target="_blank" class="hover:text-red-500 transition-colors">WhatsApp</a></li>
+                        <li><a href="https://twitter.com/" target="_blank" class="hover:text-red-500 transition-colors">تويتر</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-red-600/20 pt-8 text-center text-xs">
+                <p class="text-gray-500 mb-2">© 2024 CheckTok. جميع الحقوق محفوظة.</p>
+                <p class="text-gray-600">هذا الموقع ليس تابعاً لـ TikTok رسمياً</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Countdown Script -->
+    <script>
+        function updateCountdown() {
+            // Countdown for 5 days
+            const offerEndTime = new Date().getTime() + (5 * 24 * 60 * 60 * 1000);
+            
+            const interval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = offerEndTime - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const countdownText = `${days} أيام ${hours} ساعات ${minutes} دقائق ${seconds} ثوان`;
+                
+                document.getElementById('countdown-followers').textContent = countdownText;
+                document.getElementById('countdown-likes').textContent = countdownText;
+                
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-followers').textContent = 'انتهى العرض';
+                    document.getElementById('countdown-likes').textContent = 'انتهى العرض';
+                }
+            }, 1000);
+        }
+        
+        updateCountdown();
+    </script>
+
+</body>
+</html>
